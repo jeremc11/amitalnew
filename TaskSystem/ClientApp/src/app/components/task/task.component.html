@@ -1,0 +1,31 @@
+
+<div style="float: right; width: 30%;">
+  <div *ngFor="let task of tasks" style=" border: double; padding: 5px; margin-bottom: 10px; width: 300px; float: right;">
+    <p><label><span class="field">Task: </span><input disabled value="{{task.subject}}"></label></p>
+    <p><label><span class="field">User: </span><input disabled value="{{ users[task.userId] }}"></label></p>
+    <p><label><span class="field">Target Date: </span><input disabled value="{{task.targetDate}}"></label></p>
+    <p><label><span class="field">Is Completed: </span><input disabled value="{{task.isCompleted}}"></label></p>
+  </div>
+</div>
+
+<div style=" border: double; padding: 5px; margin-bottom: 10px; width: 300px; float: left;">
+  <p><label><span class="field">Task: </span><input [(ngModel)]="formTask.subject"></label></p>
+  <p>
+    <label>
+      <span class="field">User: </span>
+      <select (change)="onSelected($event)">
+        <option>Select...</option>
+        <option *ngFor="let user of users | keyvalue" [value]="user.key">{{user.value}}</option>
+      </select>
+    </label>
+  </p>
+  <p><label><span class="field">Target Date: </span><input [(ngModel)]="formTask.targetDate"></label></p>
+  <p><label><span class="field">Is Completed: </span><input type="checkbox" [(ngModel)]="formTask.isCompleted"></label></p>
+
+  <button (click)="createTask()">Save</button>
+</div>
+
+
+<div>
+  <p *ngFor="let userTasks of usersTasks | keyvalue"><label>{{ users[returnInt(userTasks.key)] + ": " + userTasks.value }}</label></p>
+</div>
