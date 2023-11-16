@@ -46,18 +46,25 @@ namespace WebApp
         [HttpPost]
         public IActionResult Post([FromBody] TaskSystem.Models.Task task)
         {
-            // get all tasks of user
-            var tasks = _context.Tasks.ToList();
+            // get all tasks for user in input
+            var tasks = _context.Tasks.Where(t => t.UserId == task.UserId).ToList();
 
-            // if the user reached the max tasks per user or the task already exists for this user, prevent the request
-            if (tasks.Where(t => t.UserId == task.UserId).ToList().Count() >= MaxTasksPerUser || tasks.Find(t => t.UserId == task.UserId && t.Subject == task.Subject) != null)
+            // if the user reached the max opened tasks per user, prevent the request
+            if (tasks.Where(t => t.IsCompleted == false).Count() >= MaxTasksPerUser)
             {
-                return BadRequest();
+                return BadRequest("max opened tasks reached");
             }
-
-            _context.Tasks.Add(task);
-            _context.SaveChanges();
-            return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
+            // if the task already exists for this user, prevent the request
+            else if (tasks.Where(t => t.IsCompleted == false).Count() >= MaxTasksPerUser || tasks.Find(t => t.Subject == task.Subject) != null)
+            {
+                return BadRequest("task already exists for user");
+            }
+            else
+            {
+                _context.Tasks.Add(task);
+                _context.SaveChanges();
+                return CreatedAtAction(nameof(GetById), new { id = task.Id }, task);
+            }
         }
 
         public HttpResponseMessage Options()

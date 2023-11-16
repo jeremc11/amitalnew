@@ -9,7 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-
+using Newtonsoft.Json;
 
 namespace WebApp
 {
@@ -50,7 +50,7 @@ namespace WebApp
 
         // GET: api/users/tasks
         [HttpGet]
-        public ActionResult<Dictionary<int, int>> Get()
+        public IActionResult Get()
         {
             // Group tasks by UserId
             var tasks = _context.Tasks.AsEnumerable();
@@ -60,10 +60,11 @@ namespace WebApp
 
             foreach (var user in groupedTasks)
             {
-                userTasks.Add(user.Key, user.ToList().Count());
+                userTasks.Add(user.Key, user.Where(t => t.IsCompleted == false).ToList().Count());
             }
 
-            return Ok(userTasks);
+            string jsonResult = JsonConvert.SerializeObject(userTasks);
+            return Content(jsonResult, "application/json");
         }
 
         public HttpResponseMessage Options()

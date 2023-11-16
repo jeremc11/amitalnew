@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jeremy\\Documents\\GitHub\\amital\\TaskSystem\\TaskSystem.csproj": {}
+    "C:\\Users\\jeremy\\source\\repos\\TaskSystem\\TaskSystem\\TaskSystem.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jeremy\\Documents\\GitHub\\amital\\TaskSystem\\TaskSystem.csproj": {
+    "C:\\Users\\jeremy\\source\\repos\\TaskSystem\\TaskSystem\\TaskSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jeremy\\Documents\\GitHub\\amital\\TaskSystem\\TaskSystem.csproj",
+        "projectUniqueName": "C:\\Users\\jeremy\\source\\repos\\TaskSystem\\TaskSystem\\TaskSystem.csproj",
         "projectName": "TaskSystem",
-        "projectPath": "C:\\Users\\jeremy\\Documents\\GitHub\\amital\\TaskSystem\\TaskSystem.csproj",
+        "projectPath": "C:\\Users\\jeremy\\source\\repos\\TaskSystem\\TaskSystem\\TaskSystem.csproj",
         "packagesPath": "C:\\Users\\jeremy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jeremy\\Documents\\GitHub\\amital\\TaskSystem\\obj\\",
+        "outputPath": "C:\\Users\\jeremy\\source\\repos\\TaskSystem\\TaskSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -50,6 +50,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
